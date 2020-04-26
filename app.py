@@ -1,24 +1,15 @@
 from flask import Flask, request, jsonify
-from db import db
-from flask_marshmallow import Marshmallow
 import os
 
+from db import db
 from models.product import Product
+from schemas.productSchema import ProductSchema, product_schema, products_schema
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-ma = Marshmallow(app)
-
-class ProductSchema(ma.Schema):
-    class Meta:
-        fields = ('id', 'name', 'description', 'price', 'quantity')
-
-product_schema = ProductSchema()
-products_schema = ProductSchema(many=True)
 
 @app.route('/products', methods=['POST'])
 def add_product():
