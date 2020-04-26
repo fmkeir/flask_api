@@ -23,7 +23,6 @@ def add_product():
 @products.route('/', methods=['GET'])
 def get_products():
     all_products = Product.query.all()
-    print(all_products)
     return products_schema.jsonify(all_products)
 
 @products.route('/<id>', methods=['GET'])
