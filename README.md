@@ -15,3 +15,6 @@ To initialise the database, use the following commands inside the python interpr
 from app import db
 db.create_all()
 ```
+
+#### Built Following this tutorial
+https://youtu.be/PTZiDnuC86g
